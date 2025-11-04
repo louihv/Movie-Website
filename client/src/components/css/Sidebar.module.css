@@ -1,0 +1,78 @@
+/* Sidebar container */
+.sidebar {
+    width: 100px;
+    height: 100vh;
+    background-color: #2522207f;
+    color: #D4AB7E;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Open state */
+  .open {
+    transform: translateX(0);
+  }
+  
+  /* Closed state */
+  .closed {
+    transform: translateX(-100%);
+  }
+  
+  /* Close button */
+  .close_btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  /* Navigation styling */
+  .navig {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navig dt {
+    margin: 5px 0;
+  }
+  
+  .navig dt a {
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navig dt i:hover {
+    background-color: #896552;
+  }
+
+.logo{
+    width: 80px;
+    height: 80px;
+    position: relative;
+   right: 10px;
+    
+}
+
+  .navig i{
+    background-color: none;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 50%;
+    font-weight: 100;
+    color: #D4AB7E;
+  }

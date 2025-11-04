@@ -1,0 +1,124 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+body{
+    color: #D4AB7E;
+    justify-content: left;
+
+}
+.Home{
+    min-height: 880px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    /* background: rgb(1,8,20);
+    background: radial-gradient(circle, #010814 34%, #191b1d 70%) ; */
+    background: #1B1A1D; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+
+.content{
+background-color: transparent;
+width: 100%;
+color: aliceblue;
+justify-content: left;
+height: 80vh;
+}
+
+.keep {
+    position: relative;
+    height: 320px;
+    min-width: 600px;
+    text-align: left;   
+    margin-left:100px ;
+    margin-top:150px ;
+
+}
+.texts{
+    /* border: red 2px solid; */
+    width: 500px;
+    z-index: 80;
+}
+.texts h1{
+    font-size: 50px;
+}  
+.clearfix{
+    position: relative;
+    overflow: hidden;
+    max-height: 700px;
+    max-width: 800px;
+    top: -360px;
+    right: -550px;
+        box-shadow: 
+          20px 20px 40px rgba(0, 0, 0, 0.8), /* Top-left corner */
+         20px -20px 40px rgba(0, 0, 0, 0.8),  /* Top-right corner */
+         -20px 20px 40px rgba(0, 0, 0, 0.8),  /* Bottom-left corner */
+          20px 20px 40px rgba(0, 0, 0, 0.8);   /* Bottom-right corner */
+  
+}
+.clearfix img{
+  min-height: 700px;
+  width: 100%;
+object-fit:cover; /* Ensure the image is fully visible within the container*/
+z-index: 1;
+box-shadow: 0px 0px 0px 4000px rgba(27, 61, 88, 0.5) inset;
+object-position:  100;
+border: 5px solid rgba(20, 4, 4, 0.771); /* Black border with 50% transparency */
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .arrow{
+    margin: 20px ;
+    padding: 20px;
+     padding: 10px 20px;
+      background-color: transparent;
+       color: white;
+       border: none;
+       cursor: pointer;
+       position: absolute;
+      top: 300px;
+
+ }
+ .arrow i{
+    font-size: 40px;
+ }
+ #left_arrow{
+    left: 0;
+ }
+
+ #right_arrow{
+    right: 0;
+ }
+
+ .carousel_container {
+    position: relative;
+    display: flex;
+    overflow-x: hidden; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap scroll */
+    padding: 10px 0;
+    background: transparent;
+  }
+  
+  .carousel_item {
+    flex: 0 0 auto; /* Prevents the items from shrinking and allows them to stay in their original width */
+    margin-right: 15px; /* Adds space between images */
+    scroll-snap-align: start; /* Aligns items at the start of the scroll */
+  }
+  
+  .carousel_item img {
+    display: block;
+    width: 250px; /* Adjust width as needed */
+    height: 350px;
+    border-radius: 8px; /* Optional, adds rounded corners to the images */
+  }
+  

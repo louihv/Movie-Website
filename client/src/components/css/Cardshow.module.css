@@ -1,0 +1,10 @@
+/* Cardshow.css */
+.ant-card-meta {
+    background-color: transparent !important; /* Make the Meta background transparent */
+  }
+  
+  .ant-card-meta-title,
+  .ant-card-meta-description {
+    color: white; /* Adjust text color to be more visible if needed */
+  }
+  

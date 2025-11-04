@@ -1,0 +1,137 @@
+
+
+.login{
+    min-height: 100vh;
+    width: 100%;   
+    position:absolute ;
+    top: 0;
+     background: #1B1A1D;
+     overflow-x: hidden; 
+}
+
+
+.loginContainer{
+    position: relative;
+    display: block;
+    align-items: center;
+    width: 800px;
+    height: 400px;
+    top: 130px;
+    left: 400px;
+    border-radius: 30px;
+    background-color: #52463572;
+	backdrop-filter: blur(8px);
+    padding: 20px;
+}
+
+.blob_outer_container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    inset: 0;
+    margin: auto;
+    filter: blur(100px);
+    /*opacity: 0.5;*/
+}
+
+.blob_inner_container {
+    border-radius: 99999px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    min-width: 1000px;
+    overflow: hidden;
+    background-color: #fff;
+    transform: scale(0.8);
+}
+
+.blob {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    margin: auto;
+    background: conic-gradient(from 0deg, #08f, #f60, #bbffa1, #4c00ff, #ab2666, #09f);
+    animation: spinBlob 8s linear infinite;
+}
+
+@keyframes spinBlob {
+    0% {
+        transform: rotate(0deg) scale(2);
+    }
+
+    100% {
+        transform: rotate(1turn) scale(2);
+    }
+}
+
+.right{
+    /* background-color: #08f; */
+    width: 400px;
+    position: relative;
+    margin-left: 50%;
+    text-align: left;
+    overflow: auto;
+}
+
+.right::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.right h1{
+    font-size: 40px
+}
+
+.input_group{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.input_group label{
+    text-align: left;
+}
+
+.input_group input {
+    width: 90%;
+    height: 25px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Poppins', serif;
+  }
+  .input_group input:focus {
+    border-color: #57bd84;
+  }
+  .error_message {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .login_button {
+    margin-top: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #8e6248;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .login_button:hover {
+    background-color: #2e2521;
+    color: #d4ab7e;
+  }

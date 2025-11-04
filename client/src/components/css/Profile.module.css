@@ -1,0 +1,10 @@
+.Profile{
+  
+    height: 150vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: rgb(1,8,20);
+    background: radial-gradient(circle, #010814 34%, #191b1d 70%);
+}

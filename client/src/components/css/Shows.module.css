@@ -1,0 +1,197 @@
+
+.show{
+    
+    min-height: 100vh;
+    width: 100%;   
+    position:absolute ;
+    top: 0;
+     background: #1B1A1D;
+     overflow-x: hidden; 
+ 
+}
+.show h1, p{
+ color: #D4AB7E;
+    
+}
+
+.topBar{
+    background-color: #2522204d;
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+}
+
+.search_container {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    position: relative;
+    left: 990px;
+    top: 15px;
+  }
+  
+  .search_bar {
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Poppins', serif;
+
+  }
+  
+  .search_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+  }
+  
+  .search_button i {
+    font-size: 20px;
+    color: #333;
+  }
+  
+
+.sideofside{
+    width: 160px;
+    height: 100vh;
+    background-color: #2522204b;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 100px;
+    z-index: 11;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    font-size: 15px;
+}
+
+/* all goods na */
+.content{
+    background-color: transparent;
+    width: 1250px;
+    color: aliceblue;
+    justify-content: left;
+    height: 100vh;
+    position: relative;
+    left: 260px;
+    top:70px;
+    overflow: hidden;
+
+    }
+
+    .keep {
+        position: relative;
+        height: 320px;  
+        text-align: left;   
+        
+    }
+    .texts{
+        position: absolute;
+        width: 500px;
+        z-index: 80;
+        left: 40px;
+        top: 50px;
+    }
+    .texts h1{
+        font-size: 50px;
+    }  
+    .clearfix{
+        position: relative;
+        max-height: 1950px;
+        max-width:1250px;
+      overflow: hidden;
+    }
+    .clearfix img{
+      height: 800px;
+      width: 1250px;
+    z-index: -1;
+    box-shadow: 0px 0px 0px 4000px rgba(27, 61, 88, 0.5) inset;
+    opacity: 50%;
+    object-fit:cover; /* Ensure the image is fully visible within the container*/
+
+    }
+ 
+  .arrow{
+     background-color: transparent;
+     color: white;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+      font-size: 40px;
+      border: wheat 2px solid;
+      justify-content: space-evenly;
+      flex-direction: row;
+        
+     }
+      .left_arrow, .right_arrow{
+        background-color: transparent;
+        color: white;
+        border: none;
+     }
+     .left_arrow{
+     }
+     
+     .carousel_container {
+        position: relative;
+        display: flex;
+        overflow-x: auto; 
+        scroll-snap-type: x mandatory; /* Snap scroll */
+        padding: 10px 20px;
+        background: transparent;
+        width: 1200px;
+        left: 280px;
+        background-color: #333;
+        overflow: auto;
+      }
+
+      .carousel_container::after {
+        content: "";
+        clear: both;
+        display: table;
+      }    
+      
+      .carousel_item {
+        flex: 0 0 auto; /* Prevents the items from shrinking and allows them to stay in their original width */
+        margin-right: 15px; /* Adds space between images */
+        scroll-snap-align: start; /* Aligns items at the start of the scroll */
+      }
+      
+      .carousel_item img {
+        display: block;
+        width: 180px; /* Adjust width as needed */
+        height: 250px;
+        border-radius: 8px; /* Optional, adds rounded corners to the images */
+      }
+      .carousel_container::-webkit-scrollbar {
+        width: 20px;
+        height: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+      }
+       
+      /* Handle */
+      .carousel_container::-webkit-scrollbar-thumb {
+        background: #473e3a; 
+        border-radius: 10px;
+      }

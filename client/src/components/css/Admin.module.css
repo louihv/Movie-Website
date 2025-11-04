@@ -1,0 +1,28 @@
+.Admin{
+    height: 150vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: rgb(1,8,20);
+    background: radial-gradient(circle, #010814 34%, #191b1d 70%);
+}
+.Admin h1, .Admin h2{
+    color: #fff;
+}
+.Admin input{
+    padding: 10px;
+    font-family: 'Poppins', serif;
+    border-radius: 10px;
+
+}
+.Admin li{
+    list-style: none;
+    color: #fff;
+
+}
+.Admin button{
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+}

@@ -1,0 +1,42 @@
+.head{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1250px;
+    padding: 2px 180px; /*---length n height */
+    display: flex;
+    align-items: center;
+    height: 70px;
+    background-color: (0,0,0,0,.1);
+	backdrop-filter: blur(5px);
+    z-index: 120;
+    justify-content: center;
+}
+.head h1{
+    color: #D2AC47;
+    position: relative;
+    left: -105px;
+    padding-top: 10px;
+    font-family: 'Playfair Display', Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    
+
+}
+.navbar{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+
+}
+
+.navbar a {
+    font-size: 1.25rem;
+    text-decoration: none;
+    margin-left: 50px;
+    margin-bottom: 5px;
+	color: #D2AC47;
+    padding-top: 120px;
+    align-items: center;    
+    justify-content: center;
+}
+
