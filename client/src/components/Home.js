@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
 import styles from './css/Home.module.css';
-import logo from './resc/logo.png';
 import Header from './Header';
 
 const StarRating = () => {
@@ -49,18 +48,16 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Set up a 10-second timer to update the currentIndex
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); // Loop back to the start
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
     }, 10000);
 
-    // Cleanup function to clear the interval on unmount
     return () => clearInterval(timer);
   }, [overalls]);
 
   const fetchOveralls = async () => {
     try {
-      const response = await axios.get('http://localhost:8005/api/getOveralls');
+      const response = await axios.get('http://localhost:8005/api/all');
       console.log(response.data); 
       setOveralls(response.data);
     } catch (error) {
@@ -69,12 +66,12 @@ const Home = () => {
   };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); // Loop back to the start
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
   };
 
   const handlePreviousClick = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 // Loop back to the last item
+      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 
     );
   };
 
@@ -133,7 +130,7 @@ const Home = () => {
         <ul className={styles.carousel_container}>
           {overalls.map((item) => (
             <li key={item.id} className={styles.carousel_item}>
-            <img src={item.url} alt={`Image for item ${item.id}`} />
+            <img src={item.url} alt={`Item ${item.id}`} />
           </li>
           ))}
         </ul>

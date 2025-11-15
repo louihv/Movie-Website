@@ -15,18 +15,16 @@ const Shows = () => {
   }, []);
 
   useEffect(() => {
-    // Set up a 10-second timer to update the currentIndex
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); // Loop back to the start
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
     }, 10000);
 
-    // Cleanup function to clear the interval on unmount
     return () => clearInterval(timer);
   }, [overalls]);
 
   const fetchOveralls = async () => {
     try {
-      const response = await axios.get('http://localhost:8005/api/getMovies');
+      const response = await axios.get('http://localhost:8005/api/getShows');
       console.log(response.data); 
       setOveralls(response.data);
     } catch (error) {

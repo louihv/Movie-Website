@@ -7,6 +7,6 @@ const OverallSchema = new mongoose.Schema({
   url: { type: String, required: true }, 
 });
 
-const OverallModel = mongoose.model('overalls', OverallSchema); // Capitalized model name for convention
+const OverallModel = mongoose.model('overalls', OverallSchema); 
 
 module.exports = OverallModel;
