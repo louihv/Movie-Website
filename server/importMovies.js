@@ -55,7 +55,7 @@ async function run() {
   // Connect to Atlas
   const client = new MongoClient(MONGO_URI);
   await client.connect();
-  const db = client.db(); // use DB from URI
+  const db = client.db();
   const collection = db.collection("movies");
 
   const allMovies = [];

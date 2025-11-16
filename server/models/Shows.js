@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const showSchema = new mongoose.Schema(
-  {}, 
-  { strict: false});
+  {},
+  { strict: false }
+);
 
-module.exports = mongoose.model('Shows', showSchema);
+export default mongoose.model('Shows', showSchema);

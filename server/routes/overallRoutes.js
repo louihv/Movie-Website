@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import Movie from '../models/Movies.js'; 
+
 const router = express.Router();
-const Movie = require('../models/Movies');
 
 router.get('/all', async (req, res) => {
   try {
@@ -24,4 +25,4 @@ router.get('/all', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

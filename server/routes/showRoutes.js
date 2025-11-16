@@ -1,26 +1,28 @@
-const express = require('express');
-const router = express.Router();
-const show = require('../models/Shows');
+import express from 'express';
+import Show from '../models/Shows.js';
 
-  router.get('/', async (req, res) => {
+const router = express.Router();
+
+router.get('/', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
-    const shows = await show.find({})
-      .select('title year plot poster genres runtime') 
+    const shows = await Show.find({})
+      .select('title year plot poster genres runtime')
       .skip(skip)
       .limit(limit)
-      .lean(); 
-    const total = await show.countDocuments();
+      .lean();
+
+    const total = await Show.countDocuments();
 
     res.json({
       page,
       limit,
       total,
       totalPages: Math.ceil(total / limit),
-      data: shows
+      data: shows,
     });
   } catch (err) {
     console.error(err);
@@ -30,12 +32,12 @@ const show = require('../models/Shows');
 
 router.get('/:id', async (req, res) => {
   try {
-    const show = await show.findById(req.params.id).lean();
-    if (!show) return res.status(404).json({ message: 'Show not found' });
-    res.json(show);
+    const showItem = await Show.findById(req.params.id).lean();
+    if (!showItem) return res.status(404).json({ message: 'Show not found' });
+    res.json(showItem);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
 });
 
-module.exports = router;
+export default router; 

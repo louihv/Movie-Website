@@ -1,6 +1,6 @@
-const MovieModel = require('../models/Movies'); // Ensure the filename is correct
+import MovieModel from '../models/Movies.js'; // <-- use .js extension
 
-const getMovies = (req, res) => {
+export const getMovies = (req, res) => {
   MovieModel.find()
     .then(movies => res.json(movies))
     .catch(err => {
@@ -8,5 +8,3 @@ const getMovies = (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     });
 };
-
-module.exports = {getMovies};

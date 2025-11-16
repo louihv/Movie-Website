@@ -1,7 +1,5 @@
-const UserModel = require('../models/Users'); // Ensure the filename is correct
-
-// Get all users
-const getUsers = (req, res) => {
+import UserModel from '../models/Users.js'; 
+export const getUsers = (req, res) => {
   UserModel.find()
     .then((users) => res.json(users))
     .catch((err) => {
@@ -10,8 +8,7 @@ const getUsers = (req, res) => {
     });
 };
 
-// Delete a user by ID
-const deleteUser = (req, res) => {
+export const deleteUser = (req, res) => {
   UserModel.findByIdAndDelete(req.params.id)
     .then(() => res.json({ message: "User deleted" }))
     .catch((err) => {
@@ -20,8 +17,7 @@ const deleteUser = (req, res) => {
     });
 };
 
-// Create a new user
-const createUser = (req, res) => {
+export const createUser = (req, res) => {
   const newUser = new UserModel(req.body);
   newUser
     .save()
@@ -32,8 +28,7 @@ const createUser = (req, res) => {
     });
 };
 
-// Update a user by ID
-const updateUser = (req, res) => {
+export const updateUser = (req, res) => {
   UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((user) => res.json(user))
     .catch((err) => {
@@ -41,5 +36,3 @@ const updateUser = (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     });
 };
-
-module.exports = { getUsers, deleteUser, createUser, updateUser };

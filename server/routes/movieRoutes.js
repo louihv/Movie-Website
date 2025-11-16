@@ -1,18 +1,20 @@
-const express = require('express');
-const router = express.Router();
-const Movie = require('../models/Movies');
+import express from 'express';
+import Movie from '../models/Movies.js'; 
 
-  router.get('/', async (req, res) => {
+const router = express.Router();
+
+router.get('/', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
     const movies = await Movie.find({})
-      .select('title year plot poster genres runtime') 
+      .select('title year plot poster genres runtime')
       .skip(skip)
       .limit(limit)
-      .lean(); 
+      .lean();
+
     const total = await Movie.countDocuments();
 
     res.json({
@@ -20,7 +22,7 @@ const Movie = require('../models/Movies');
       limit,
       total,
       totalPages: Math.ceil(total / limit),
-      data: movies
+      data: movies,
     });
   } catch (err) {
     console.error(err);
@@ -38,4 +40,4 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router; 

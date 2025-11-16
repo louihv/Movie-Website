@@ -1,13 +1,12 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+import 'dotenv/config'; 
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
-const userRoutes = require('./routes/userRoutes');
-const movieRoutes = require('./routes/movieRoutes');
-const overallRoutes = require('./routes/overallRoutes');
-const showRoutes = require('./routes/showRoutes');
-
+import userRoutes from './routes/userRoutes.js';
+import movieRoutes from './routes/movieRoutes.js';
+import overallRoutes from './routes/overallRoutes.js';
+import showRoutes from './routes/showRoutes.js';
 
 const app = express();
 
@@ -32,7 +31,7 @@ const PORT = process.env.PORT || 8005;
 app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
-app.use('/api', overallRoutes); 
+app.use('/api', overallRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
@@ -53,7 +52,7 @@ const startServer = async () => {
   try {
     await mongoose.connect(MONGO_URI);
     console.log('MongoDB connected');
-    
+
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });
