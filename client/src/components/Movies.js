@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styles from './css/Movies.module.css';
+import movies from './css/Movies.module.css';
+import styles from './css/Global.module.css';
 import Sidebar from "./Sidebar";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -35,100 +36,85 @@ const Movies = () => {
 };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); // Loop back to the start
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
   };
 
   const handlePreviousClick = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 // Loop back to the last item
+      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 
     );
   };
 
  
   return (
     <div className={styles.show}>
-      <nav className={styles.topBar}>
-      <div className={styles.search_container}>
-      <input type="text"
-       id={styles.searh_bar} 
-       className={styles.search_bar}
-      placeholder="Search..."/>
-    <button className={styles.search_button}>
-  <FontAwesomeIcon icon={faMagnifyingGlass} />  </button>
-</div>
+  {/* ---- SIDEBAR ---- */}
+  <aside className={styles.sidebar}>
+    <Sidebar isOpen={true} toggleSidebar={() => {setIsOpen(!isOpen)}} /> 
+    <div className={styles.sideofside}>
+      <h1>Genre</h1>
+      <p>Horror</p>
+      <p>Action</p>
+      <p>Adventure</p>
+      <p>Sci-Fi</p>
+    </div>
+  </aside>
 
-      </nav>
+  <main className={styles.mainContent}>
+    <nav className={styles.topBar}>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          className={styles.searchBar}
+          placeholder="Search..."
+        />
+        <button className={styles.searchButton}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
+    </nav>
 
-      <div className={styles.sidebar}>
-        <Sidebar isOpen={isOpen} toggleSidebar={() => setIsOpen(!isOpen)} />
-        <div className={styles.sideofside}>
-          <h1>Genre</h1>
-          <p>Horror</p>
-          <p>Action</p>
-          <p>Adventure</p>
-          <p>Sci-Fi</p>
-        </div>
-    
-          <section>
-          <div className={styles.content}>
-           {overalls.length > 0 && (
-              <div className={styles.keep} key={overalls[currentIndex]._id}>
-                {/* Poster */}
-                {overalls[currentIndex].poster && (
-                  <div className={styles.clearfix}>
-                    <img
-                      src={overalls[currentIndex].poster}
-                      alt={overalls[currentIndex].title}
-                    />
-                  </div>
-                )}
+    <section className={styles.galleryContainer}>
+      {overalls.length > 0 && (
+        <div className={styles.posterContainer}>
+          <img
+            src={overalls[currentIndex].poster}
+            alt={overalls[currentIndex].title}
+            className={styles.posterImg}
+          />
 
-                {/* Text */}
-                <div className={styles.texts}>
-                  <h1>{overalls[currentIndex].title}</h1>
-                  <p>{overalls[currentIndex].plot || "No description."}</p>
-                  <h3>{Array.isArray(overalls[currentIndex].genres) 
-                    ? overalls[currentIndex].genres.join(', ') 
-                    : "Unknown"}</h3>
-                </div>
-              </div>
-            )}
-           <div className={styles.arrow}>
-            <button 
-              onClick={handlePreviousClick} 
-              disabled={overalls.length === 0}
-              className={styles.left_arrow}
-            >
-              <i className='bx bx-chevron-left'></i>
-            </button>
-
-            <button 
-              onClick={handleNextClick} 
-              disabled={overalls.length === 0}
-              className={styles.right_arrow}
-              style={{left:'0'}}
-            >
-               <i className='bx bx-chevron-right'></i>
-            </button>
-            </div>
+          {/* Title & description overlay */}
+          <div className={styles.texts}>
+            <h1>{overalls[currentIndex].title}</h1>
+            <p>{overalls[currentIndex].plot || " "}</p>
           </div>
-        </section>
-        
-        <section>
-        <ul className={styles.carousel_container}>
+
+          <div className={styles.arrow}>
+            <button onClick={handlePreviousClick} className={styles.leftArrow}>
+              <i className="bx bx-chevron-left"></i>
+            </button>
+            <button onClick={handleNextClick} className={styles.rightArrow}>
+              <i className="bx bx-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className={styles.carouselContainer}>
+        <ul className={styles.carousel}>
           {overalls.map((movie) => (
-            <li key={movie._id} className={styles.carousel_item}>
-              <img 
-                src={movie.poster} 
+            <li key={  movie.id} className={styles.carouselItem}>
+              <img
+                src={movie.poster}
                 alt={movie.title}
-                style={{ width: '100px', height: '150px', objectFit: 'cover' }}
               />
             </li>
           ))}
         </ul>
-        </section>
       </div>
-    </div>
+    </section>
+  </main>
+</div>
   );
 };
 

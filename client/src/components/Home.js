@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Home.module.css';
 import Header from './Header';
@@ -11,7 +11,6 @@ const StarRating = () => {
     <div>
       {[...Array(5)].map((_, index) => {
         const ratingValue = index + 1;
-
         return (
           <label key={index}>
             <input
@@ -40,100 +39,115 @@ const StarRating = () => {
 };
 
 const Home = () => {
-  const [overalls, setOveralls] = useState([]); 
-  const [currentIndex, setCurrentIndex] = useState(0); 
+  const [movies, setMovies] = useState([]); 
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    fetchOveralls();
+    fetchTrending();
   }, []);
 
   useEffect(() => {
+    if (movies.length === 0) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
+      setCurrentIndex((prev) => (prev + 1) % movies.length);
     }, 10000);
-
     return () => clearInterval(timer);
-  }, [overalls]);
+  }, [movies]);
 
-  const fetchOveralls = async () => {
+  const fetchTrending = async () => {
     try {
-      const response = await axios.get('http://localhost:8005/api/all');
-      console.log(response.data); 
-      setOveralls(response.data);
+      const response = await axios.get('http://localhost:8005/api/tmdb/trending');
+      console.log('TMDB Response:', response.data);
+
+      const results = response.data.results || response.data.data || [];
+      
+      const formatted = results.map(item => ({
+        _id: item.id,
+        name: item.title || item.name,          
+        description: item.overview || "No description available.",
+        genre: item.genre_ids?.[0] ? "Action, Drama" : "Various", 
+        url: item.poster_path 
+          ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+          : "https://via.placeholder.com/300x450?text=No+Image",
+        year: item.release_date?.split('-')[0] || item.first_air_date?.split('-')[0] || "N/A",
+        rating: item.vote_average?.toFixed(1)
+      }));
+
+      setMovies(formatted);
     } catch (error) {
-      console.error('Error fetching overall data:', error);
+      console.error('Error fetching trending:', error);
+      setMovies([]);
     }
   };
 
-  const handleNextClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % movies.length);
   };
 
-  const handlePreviousClick = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 
-    );
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? movies.length - 1 : prev - 1));
   };
+
+  if (movies.length === 0) {
+    return <div className={styles.home}>
+      <Header />
+      <p>Loading trending movies & shows...</p></div>;
+  }
+
+  const current = movies[currentIndex];
 
   return (
-    <div className={styles.Home}>
+    <div className={styles.home}>
       <Header />
 
       <main>
         <section>
           <div className={styles.content}>
-            {overalls.length > 0 && (
-              <div className={styles.keep}
-                key={overalls[currentIndex]._id}
-                style={{
-                  marginBottom: '20px',
-                  paddingBottom: '10px',
-                }}
-              >
-                <div className={styles.texts}>
-                <h1>{overalls[currentIndex].name}</h1>
-                <p>{overalls[currentIndex].description}</p>
-                <h3>{overalls[currentIndex].genre}</h3>
+            <div className={styles.keep} key={current._id}>
+              <div className={styles.texts}>
+                <h1>{current.name}</h1>
+                <span><h2>({current.year})</h2></span>
+                <p>{current.description}</p>
+                <h3>{current.genre} • ★ {current.rating}</h3>
                 <StarRating />
-                </div>
-                {overalls[currentIndex].url && (
-                  <div className={styles.clearfix}>
-                    <img
-                      src={overalls[currentIndex].url}
-                      alt={overalls[currentIndex].name}
-                    />
-                  </div>
-                )}
               </div>
-            )}
 
-            <button 
-              onClick={handlePreviousClick} 
-              disabled={overalls.length === 0}
-              className={styles.arrow}
-              id={styles.left_arrow}
-            >
+              <div className={styles.clearfix}>
+                <img
+                  src={current.url}
+                  alt={current.name}
+                  style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                />
+              </div>
+            </div>
+
+            <button onClick={handlePrev} className={styles.arrow} id={styles.left_arrow}>
               <i className='bx bx-chevron-left'></i>
             </button>
 
-            <button 
-              onClick={handleNextClick} 
-              disabled={overalls.length === 0}
-              className={styles.arrow}
-              id={styles.right_arrow}
-            >
-               <i className='bx bx-chevron-right'></i>
+            <button onClick={handleNext} className={styles.arrow} id={styles.right_arrow}>
+              <i className='bx bx-chevron-right'></i>
             </button>
           </div>
         </section>
+
         <section>
-        <ul className={styles.carousel_container}>
-          {overalls.map((item) => (
-            <li key={item.id} className={styles.carousel_item}>
-            <img src={item.url} alt={`Item ${item.id}`} />
-          </li>
-          ))}
-        </ul>
+          <h2 className={styles.carouselHeading}>
+           Trending This Week
+          </h2>
+          <ul className={styles.carousel_container}>
+            {movies.map((item) => (
+              <li key={item._id} className={styles.carousel_item}>
+                <img 
+                  src={item.url} 
+                  alt={item.name}
+                />
+                <p >
+                  {item.name}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
     </div>

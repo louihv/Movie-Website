@@ -7,7 +7,8 @@ body{
     justify-content: left;
 
 }
-.Home{
+
+.home{
     min-height: 880px;
     width: 100%;
     position: absolute;
@@ -20,6 +21,7 @@ body{
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow-x: hidden;
 
 }
 
@@ -32,93 +34,125 @@ height: 80vh;
 }
 
 .keep {
-    position: relative;
-    height: 320px;
-    min-width: 600px;
-    text-align: left;   
-    margin-left:100px ;
-    margin-top:150px ;
+  position: relative;
+  width: 100%;
+  text-align: left;   
+  margin:80px ;
+  display: flex;
+  flex-direction: row;
+}
 
-}
 .texts{
-    /* border: red 2px solid; */
-    width: 500px;
-    z-index: 80;
+  width: 500px;
+  z-index: 80;
+  margin-top: 40px;
+  padding: 0;
 }
-.texts h1{
-    font-size: 50px;
-}  
+
+.texts h1, .texts h2{
+    font-size: 40px;
+    color: var(--secondary-color);
+} 
+
 .clearfix{
-    position: relative;
-    overflow: hidden;
-    max-height: 700px;
-    max-width: 800px;
-    top: -360px;
-    right: -550px;
-        box-shadow: 
-          20px 20px 40px rgba(0, 0, 0, 0.8), /* Top-left corner */
-         20px -20px 40px rgba(0, 0, 0, 0.8),  /* Top-right corner */
-         -20px 20px 40px rgba(0, 0, 0, 0.8),  /* Bottom-left corner */
-          20px 20px 40px rgba(0, 0, 0, 0.8);   /* Bottom-right corner */
-  
+  position: relative;
+  overflow: hidden;
+  height: 700px;
+  width: 650px;
+  left: 150px;
+      box-shadow: 
+        20px 20px 40px rgba(0, 0, 0, 0.8), /* Top-left corner */
+        20px -20px 40px rgba(0, 0, 0, 0.8),  /* Top-right corner */
+        -20px 20px 40px rgba(0, 0, 0, 0.8),  /* Bottom-left corner */
+        20px 20px 40px rgba(0, 0, 0, 0.8);  
 }
+
 .clearfix img{
   min-height: 700px;
   width: 100%;
-object-fit:cover; /* Ensure the image is fully visible within the container*/
-z-index: 1;
-box-shadow: 0px 0px 0px 4000px rgba(27, 61, 88, 0.5) inset;
-object-position:  100;
-border: 5px solid rgba(20, 4, 4, 0.771); /* Black border with 50% transparency */
+  object-fit:cover; 
+  z-index: 1;
+  box-shadow: 0px 0px 0px 4000px rgba(27, 61, 88, 0.5) inset;
+  object-position:  100;
+  border: 5px solid rgba(20, 4, 4, 0.771); 
 }
+
 .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+  content: "";
+  clear: both;
+  display: table;
+}
 
-  .arrow{
-    margin: 20px ;
-    padding: 20px;
-     padding: 10px 20px;
-      background-color: transparent;
-       color: white;
-       border: none;
-       cursor: pointer;
-       position: absolute;
-      top: 300px;
+.arrow{
+  margin: 20px ;
+  padding: 20px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 300px;
+ }
+
+ .arrow:hover{
+  background-color: transparent;
+  color: var(--secondary-color);
+  transform: scale(2.05);
 
  }
- .arrow i{
-    font-size: 40px;
+
+.arrow i{
+  font-size: 40px;
  }
+
  #left_arrow{
-    left: 0;
+  left: 0;
  }
 
  #right_arrow{
-    right: 0;
+  right: 0;
  }
 
- .carousel_container {
-    position: relative;
-    display: flex;
-    overflow-x: hidden; /* Enables horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Snap scroll */
-    padding: 10px 0;
-    background: transparent;
+ .carouselHeading{
+  text-align: left;
+  margin-left: 80px;
+ }
+
+.carousel_container {
+  position: relative;
+  display: flex;
+  overflow-x: auto; 
+  padding: 10px 0;
+  background: transparent;
+  scrollbar-color: #473e3a transparent;
+  }
+
+.carousel_container::-webkit-scrollbar {
+  height: 10px;
+  padding: 0 10px;
+}
+
+.carousel_container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel_container::-webkit-scrollbar-thumb {
+  background: #473e3a;
+  border-radius: 5px;
+}
+  
+.carousel_item {
+   list-style: none;
+  flex: 0 0 auto; 
+  margin-right: 15px; 
+  scroll-snap-align: start; 
   }
   
-  .carousel_item {
-    flex: 0 0 auto; /* Prevents the items from shrinking and allows them to stay in their original width */
-    margin-right: 15px; /* Adds space between images */
-    scroll-snap-align: start; /* Aligns items at the start of the scroll */
-  }
-  
-  .carousel_item img {
-    display: block;
-    width: 250px; /* Adjust width as needed */
-    height: 350px;
-    border-radius: 8px; /* Optional, adds rounded corners to the images */
+.carousel_item img {
+  display: block;
+  width: 250px; 
+  height: 350px;
+  border-radius: 8px;
   }
   

@@ -1,4 +1,4 @@
-import MovieModel from '../models/Movies.js'; // <-- use .js extension
+import MovieModel from '../models/Movies.js'; 
 
 export const getMovies = (req, res) => {
   MovieModel.find()

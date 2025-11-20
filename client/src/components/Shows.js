@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from './css/Shows.module.css';
+import styles from './css/Global.module.css';
 import Sidebar from "./Sidebar";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,7 +24,7 @@ const Shows = () => {
 
   const fetchOveralls = async () => {
     try {
-      const response = await axios.get('http://localhost:8005/api/getShows');
+      const response = await axios.get('http://localhost:8005/api/getstyles');
       console.log(response.data); 
       setOveralls(response.data);
     } catch (error) {
@@ -44,86 +44,74 @@ const Shows = () => {
 
  
   return (
-    <div className={styles.show}>
-      <nav className={styles.topBar}>
-      <div className={styles.search_container}>
-      <input type="text"
-       id={styles.searh_bar} 
-       className={styles.search_bar}
-      placeholder="Search..."/>
-    <button className={styles.search_button}>
-  <FontAwesomeIcon icon={faMagnifyingGlass} />  </button>
-</div>
+     <div className={styles.show}>
+  {/* ==== SIDEBAR ==== */}
+  <aside className={styles.sidebar}>
+    <Sidebar isOpen={true} toggleSidebar={() => {setIsOpen(!isOpen)}} /> 
+    <div className={styles.sideofside}>
+      <h1>Genre</h1>
+      <p>Horror</p>
+      <p>Action</p>
+      <p>Adventure</p>
+      <p>Sci-Fi</p>
+    </div>
+  </aside>
 
-      </nav>
+  <main className={styles.mainContent}>
+    <nav className={styles.topBar}>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          className={styles.searchBar}
+          placeholder="Search..."
+        />
+        <button className={styles.searchButton}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
+    </nav>
 
-      <div className={styles.sidebar}>
-        <Sidebar isOpen={isOpen} toggleSidebar={() => setIsOpen(!isOpen)} />
-        <div className={styles.sideofside}>
-          <h1>Genre</h1>
-          <p>Horror</p>
-          <p>Action</p>
-          <p>Adventure</p>
-          <p>Sci-Fi</p>
-        </div>
-    
-          <section>
-          <div className={styles.content}>
-            {overalls.length > 0 && (
-              <div className={styles.keep}
-                key={overalls[currentIndex]._id}
-                style={{
-                  marginBottom: '20px',
-                  //paddingBottom: '10px',
-                }}
-              >
-                {overalls[currentIndex].poster && (
-                  <div className={styles.clearfix}>
-                    <img
-                      src={overalls[currentIndex].poster}
-                      alt={overalls[currentIndex].name}
-                    />
-                  </div>
-                )}
-                 <div className={styles.texts}>
-                <h1>{overalls[currentIndex].name}</h1>
-                <p>{overalls[currentIndex].description}</p>
-                <h3>{overalls[currentIndex].genre}</h3>
-                </div>
-              </div>
-            )}
-           <div className={styles.arrow}>
-            <button 
-              onClick={handlePreviousClick} 
-              disabled={overalls.length === 0}
-              className={styles.left_arrow}
-            >
-              <i className='bx bx-chevron-left'></i>
-            </button>
+    <section className={styles.galleryContainer}>
+      {overalls.length > 0 && (
+        <div className={styles.posterContainer}>
+          <img
+            src={overalls[currentIndex].poster}
+            alt={overalls[currentIndex].title}
+            className={styles.posterImg}
+          />
 
-            <button 
-              onClick={handleNextClick} 
-              disabled={overalls.length === 0}
-              className={styles.right_arrow}
-              style={{left:'0'}}
-            >
-               <i className='bx bx-chevron-right'></i>
-            </button>
-            </div>
+          {/* Title & description overlay */}
+          <div className={styles.texts}>
+            <h1>{overalls[currentIndex].title}</h1>
+            <p>{overalls[currentIndex].plot || " "}</p>
           </div>
-        </section>
-        
-        <section>
-        <ul className={styles.carousel_container}>
-          {overalls.map((item) => (
-            <li key={item.id} className={styles.carousel_item}>
-            <img src={item.url} alt={`Image for item ${item.id}`} />
-          </li>
+
+          <div className={styles.arrow}>
+            <button onClick={handlePreviousClick} className={styles.leftArrow}>
+              <i className="bx bx-chevron-left"></i>
+            </button>
+            <button onClick={handleNextClick} className={styles.rightArrow}>
+              <i className="bx bx-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className={styles.carouselContainer}>
+        <ul className={styles.carousel}>
+          {overalls.map((movie) => (
+            <li key={  movie.id} className={styles.carouselItem}>
+              <img
+                src={movie.poster}
+                alt={movie.title}
+              />
+            </li>
           ))}
         </ul>
-        </section>
       </div>
-    </div>
+    </section>
+  </main>
+</div>
   );
 };
 

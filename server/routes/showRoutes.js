@@ -1,21 +1,22 @@
 import express from 'express';
-import Show from '../models/Shows.js';
+import Movie from '../models/Shows.js';  // Make sure this model exists!
 
 const router = express.Router();
 
+// GET all shows (you can use same movies collection or create new)
 router.get('/', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
 
-    const shows = await Show.find({})
-      .select('title year plot poster genres runtime')
+    const shows = await Movie.find({})
+      .select('title year plot poster genres')
       .skip(skip)
       .limit(limit)
       .lean();
 
-    const total = await Show.countDocuments();
+    const total = await Movie.countDocuments();
 
     res.json({
       page,
@@ -30,14 +31,15 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Optional: Get single show by ID
 router.get('/:id', async (req, res) => {
   try {
-    const showItem = await Show.findById(req.params.id).lean();
-    if (!showItem) return res.status(404).json({ message: 'Show not found' });
-    res.json(showItem);
+    const show = await Movie.findById(req.params.id).lean();
+    if (!show) return res.status(404).json({ message: 'Show not found' });
+    res.json(show);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
 });
 
-export default router; 
+export default router;

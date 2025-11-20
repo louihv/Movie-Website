@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import movieRoutes from './routes/movieRoutes.js';
 import overallRoutes from './routes/overallRoutes.js';
 import showRoutes from './routes/showRoutes.js';
+import tmdbRoutes from './routes/tmdbRoutes.js';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/shows', showRoutes);
 app.use('/api', overallRoutes);
+app.use('/api/tmdb', tmdbRoutes);
 
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });

@@ -6,6 +6,7 @@ import 'boxicons/css/boxicons.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
+
 // import logo from './resc/logo.png'; 
 
 function App() {

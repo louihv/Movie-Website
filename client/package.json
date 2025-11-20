@@ -15,11 +15,12 @@
     "antd": "^5.21.4",
     "axios": "^1.7.7",
     "boxicons": "^2.1.4",
+    "ionicons": "^8.0.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-fontawesome": "^1.7.1",
     "react-router-dom": "^6.27.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,5 +46,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "eslint-config-react-app": "^7.0.1"
   }
 }
