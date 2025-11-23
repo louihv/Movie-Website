@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from './css/Global.module.css';
+import movie from './css/Movies.module.css';
 import Sidebar from "./Sidebar";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
-const Movies = () => {
+const Shows = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [overalls, setOveralls] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0); 
@@ -50,13 +51,13 @@ const Movies = () => {
   {/* ---- SIDEBAR ---- */}
   <aside className={styles.sidebar}>
     <Sidebar isOpen={true} toggleSidebar={() => {setIsOpen(!isOpen)}} /> 
-    <div className={styles.sideofside}>
+    {/* <div className={styles.sideofside}>
       <h1>Genre</h1>
       <p>Horror</p>
       <p>Action</p>
       <p>Adventure</p>
       <p>Sci-Fi</p>
-    </div>
+    </div> */}
   </aside>
 
   <main className={styles.mainContent}>
@@ -112,9 +113,25 @@ const Movies = () => {
         </ul>
       </div>
     </section>
+
+     <section>
+          <div className={movie.listContainer}>
+          <ul className={movie.list}>
+          {overalls.map((movie) => (
+            <li key={movie.id} className={movie.listItem}>
+              <img
+                src={movie.poster}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </li>
+          ))}
+        </ul>
+        </div> 
+        </section>
   </main>
 </div>
   );
 };
 
-export default Movies;
+export default Shows;

@@ -7,6 +7,7 @@ import Profile from './Profile.js';
 import Admin from './Admin.js';
 import Settings from './Settings.js';
 import Login from './Login.js';
+import Terms from './Terms.js';
 
 
 const AppController = () => {
@@ -20,6 +21,7 @@ const AppController = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/terms" element={<Terms />} />
           
           {/* Default Route (catch-all) for undefined URLs */}
           <Route path="*" element={<Navigate to="/home" />} />

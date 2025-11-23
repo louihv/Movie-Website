@@ -92,7 +92,7 @@ const Home = () => {
     return <div className={styles.home}>
       <Header />
       <div className={styles.loading}>
-        
+        <div className={styles.spinner}></div>
       <p className={styles.loadingText}>Loading trending movies & shows...</p></div>
     </div>
   }
@@ -119,7 +119,6 @@ const Home = () => {
                 <img
                   src={current.url}
                   alt={current.name}
-                  style={{ borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                 />
               </div>
             </div>

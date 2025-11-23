@@ -119,11 +119,12 @@ const Movies = () => {
       <div className={movies.listContainer}>
       <ul className={movies.list}>
       {overalls.map((movie) => (
-        <li key={ movie.id} className={movies.listItem}>
+        <li key={movie.id} className={movies.listItem}>
           <img
             src={movie.poster}
             alt={movie.title}
           />
+          <p>{movie.title}</p>
         </li>
       ))}
     </ul>
