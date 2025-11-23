@@ -91,7 +91,10 @@ const Home = () => {
   if (movies.length === 0) {
     return <div className={styles.home}>
       <Header />
-      <p>Loading trending movies & shows...</p></div>;
+      <div className={styles.loading}>
+        
+      <p className={styles.loadingText}>Loading trending movies & shows...</p></div>
+    </div>
   }
 
   const current = movies[currentIndex];
@@ -135,9 +138,9 @@ const Home = () => {
           <h2 className={styles.carouselHeading}>
            Trending This Week
           </h2>
-          <ul className={styles.carousel_container}>
+          <ul className={styles.carouselContainer}>
             {movies.map((item) => (
-              <li key={item._id} className={styles.carousel_item}>
+              <li key={item._id} className={styles.carouselItem}>
                 <img 
                   src={item.url} 
                   alt={item.name}

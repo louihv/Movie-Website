@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
-const Shows = () => {
+const Movies = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [overalls, setOveralls] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0); 
@@ -23,29 +23,31 @@ const Shows = () => {
   }, [overalls]);
 
   const fetchOveralls = async () => {
-    try {
-      const response = await axios.get('http://localhost:8005/api/getstyles');
-      console.log(response.data); 
-      setOveralls(response.data);
-    } catch (error) {
-      console.error('Error fetching overall data:', error);
-    }
-  };
+  try {
+    const response = await axios.get('http://localhost:8005/api/series');
+    const movies = response.data.data || [];
+    console.log('Fetched movies:', movies);
+    setOveralls(movies);
+  } catch (error) {
+    console.error('Error:', error);
+    setOveralls([]);
+  }
+};
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); // Loop back to the start
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % overalls.length); 
   };
 
   const handlePreviousClick = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 // Loop back to the last item
+      prevIndex === 0 ? overalls.length - 1 : prevIndex - 1 
     );
   };
 
  
   return (
-     <div className={styles.show}>
-  {/* ==== SIDEBAR ==== */}
+  <div className={styles.show}>
+  {/* ---- SIDEBAR ---- */}
   <aside className={styles.sidebar}>
     <Sidebar isOpen={true} toggleSidebar={() => {setIsOpen(!isOpen)}} /> 
     <div className={styles.sideofside}>
@@ -115,4 +117,4 @@ const Shows = () => {
   );
 };
 
-export default Shows;
+export default Movies;

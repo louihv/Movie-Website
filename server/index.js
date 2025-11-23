@@ -6,7 +6,7 @@ import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import movieRoutes from './routes/movieRoutes.js';
 import overallRoutes from './routes/overallRoutes.js';
-import showRoutes from './routes/showRoutes.js';
+import seriesRoutes from './routes/seriesRoutes.js';
 import tmdbRoutes from './routes/tmdbRoutes.js';
 
 const app = express();
@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 8005;
 
 app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
-app.use('/api/shows', showRoutes);
+app.use('/api/series', seriesRoutes);
 app.use('/api', overallRoutes);
 app.use('/api/tmdb', tmdbRoutes);
 

@@ -51,13 +51,13 @@ const Movies = () => {
   {/* ---- SIDEBAR ---- */}
   <aside className={styles.sidebar}>
     <Sidebar isOpen={true} toggleSidebar={() => {setIsOpen(!isOpen)}} /> 
-    <div className={styles.sideofside}>
+    {/* <div className={styles.sideofside}>
       <h1>Genre</h1>
       <p>Horror</p>
       <p>Action</p>
       <p>Adventure</p>
       <p>Sci-Fi</p>
-    </div>
+    </div> */}
   </aside>
 
   <main className={styles.mainContent}>
@@ -99,6 +99,7 @@ const Movies = () => {
           </div>
         </div>
       )}
+   
 
       <div className={styles.carouselContainer}>
         <ul className={styles.carousel}>
@@ -112,7 +113,24 @@ const Movies = () => {
           ))}
         </ul>
       </div>
-    </section>
+      </section>
+    
+      <section>
+      <div className={movies.listContainer}>
+      <ul className={movies.list}>
+      {overalls.map((movie) => (
+        <li key={ movie.id} className={movies.listItem}>
+          <img
+            src={movie.poster}
+            alt={movie.title}
+          />
+        </li>
+      ))}
+    </ul>
+    </div> 
+      </section>
+
+      
   </main>
 </div>
   );
